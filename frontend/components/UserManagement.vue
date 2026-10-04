@@ -1,0 +1,10 @@
+<script setup lang="ts">
+import type { User, UserCreate } from '~/types/api'
+const api = useApi(); const users = ref<User[]>([]); const error = ref(''); const form = reactive<UserCreate>({ email: '', display_name: '', password: '', is_admin: false })
+async function load() { try { users.value = await api.users() } catch { error.value = 'Benutzer konnten nicht geladen werden.' } }
+async function create() { try { users.value.unshift(await api.createUser(form)); Object.assign(form, { email: '', display_name: '', password: '', is_admin: false }) } catch { error.value = 'Benutzer konnte nicht angelegt werden.' } }
+onMounted(load)
+</script>
+<template><section class="card"><h2>Nutzerverwaltung</h2><p>Nur Administratoren können Konten verwalten.</p><form @submit.prevent="create"><input v-model="form.display_name" required placeholder="Anzeigename"><input v-model="form.email" required type="email" placeholder="E-Mail"><input v-model="form.password" required type="password" minlength="12" placeholder="Passwort (mind. 12 Zeichen)"><label><input v-model="form.is_admin" type="checkbox"> Administrator</label><button>Anlegen</button></form><p v-if="error" class="error">{{ error }}</p><ul><li v-for="entry in users" :key="entry.id"><b>{{ entry.display_name }}</b> · {{ entry.email }} <span v-if="entry.is_admin">Admin</span><span v-if="!entry.is_active">Deaktiviert</span></li></ul></section></template>
+<style scoped>.card{background:#fff;border:1px solid #e1e7ef;border-radius:20px;padding:1.5rem}.card h2{margin-top:0}.card p{color:#607085}.card form{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}.card input{min-width:0;padding:.6rem;border:1px solid #c8d2df;border-radius:8px}.card label{font-size:.85rem}.card button{background:#17263c;color:#fff;border:0;border-radius:8px;font-weight:700}.card li{margin:.6rem 0}.card span{font-size:.75rem;background:#e5edf7;border-radius:999px;padding:.2rem .45rem}.error{color:#b42318}@media(max-width:800px){.card form{grid-template-columns:1fr}}</style>
+
