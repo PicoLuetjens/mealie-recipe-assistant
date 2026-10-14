@@ -6,7 +6,7 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///./assistant.db"
     jwt_secret: str = "replace-with-a-long-random-secret"
-    first_admin_email: str = "admin@example.invalid"
+    first_admin_email: str = "admin@example.com"
     first_admin_password: str = "change-me-before-first-start"
     openai_api_key: str = "replace-with-a-real-openai-api-key"
     openai_recipe_model: str = "gpt-4o-mini"
