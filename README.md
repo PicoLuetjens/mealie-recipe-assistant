@@ -86,7 +86,7 @@ Dann diese Werte in `.env` ersetzen:
 | `MEALIE_BASE_URL` | Mealie-Adresse aus Sicht des Backend-Containers | Bei gleichem Docker-Netz z. B. `http://mealie:9000`. |
 | `MEALIE_API_TOKEN` | Token des `recipe-assistant`-Mealie-Benutzers | Kein Admin-Token. |
 | `JWT_SECRET` | Signierschlüssel der Anwendung | Langer zufälliger Wert, mindestens 32 Zeichen. |
-| `FIRST_ADMIN_EMAIL` | erste lokale Admin-E-Mail | Nach erstem Start wird dieser Nutzer erzeugt. |
+| `FIRST_ADMIN_EMAIL` | erste lokale Admin-E-Mail | Nach erstem Start wird dieser Nutzer erzeugt. Muss eine gültige Adresse sein; reservierte Domains wie `.invalid`, `.test` oder `.local` lehnt der Login ab. |
 | `FIRST_ADMIN_PASSWORD` | erstes lokales Admin-Passwort | Vor dem ersten Start ändern; mindestens 12 Zeichen. |
 | `NUXT_PUBLIC_API_BASE` | API-Adresse, die der Browser nutzt | Lokal `http://localhost:8000/api`. |
 
