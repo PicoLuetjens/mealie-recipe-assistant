@@ -6,6 +6,12 @@ updates:
       interval: "daily"
     open-pull-requests-limit: 10
 
+  - package-ecosystem: "pip" # See documentation for possible values
+    directory: "backend/" # Location of package manifests
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
